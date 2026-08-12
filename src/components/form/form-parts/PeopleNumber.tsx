@@ -1,15 +1,17 @@
-import { useState } from "react";
 import PersonIcon from "../../../assets/images/icon-person.svg";
 
-export function PeopleNumber() {
-    const [peopleNumber, setPeopleNumber] = useState('');
+type PeopleNumberProps = {
+    peopleNumber: number; 
+    onChangePeopleNumber: (p: number) => void;
+}
 
+export function PeopleNumber({peopleNumber, onChangePeopleNumber}: PeopleNumberProps) {
     return (
         <>
             <label htmlFor="value">Number of People</label>
             <div>
                 <img src={PersonIcon} />
-                <input id="bill" type="number" value={peopleNumber} onChange={(e) => setPeopleNumber(e.target.value)} placeholder="0" />
+                <input id="people" type="number" value={peopleNumber} onChange={(e) => onChangePeopleNumber(Number(e.target.value))} placeholder="0" />
             </div>
         </>
     )
