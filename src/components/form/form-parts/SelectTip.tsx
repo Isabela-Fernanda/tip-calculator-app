@@ -17,7 +17,7 @@ export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
                 {tipOptions.map((item) => (
                     <button type="button" key={item}
                         onClick={() => { setShowCustom(false); onChangeTip(item); }}
-                        className={`h-15.5 px-3 py-2 rounded transition-colors duration-150 hover:bg-green-400/60 cursor-pointer ${tipSelected === item && !showCustom ? "text-green-900 bg-green-400/60" : "text-white-0 bg-green-900"}`}>
+                        className={`h-15.5 px-3 py-2 rounded transition-colors duration-150 hover:bg-green-400/60 cursor-pointer ${tipSelected === item && !showCustom ? "text-green-900 bg-grey-200" : "text-white-0 bg-green-900"}`}>
                         {item}%
                     </button>
                 ))}
@@ -29,22 +29,13 @@ export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
                             value === "" ? "" : Number(value)
                         );
                     }}
-                        className="h-15 w-full px-3 py-2 rounded text-right text-green-900 bg-grey-200
-                            outline-none border-2 border-green-400
-                            appearance-none
-                            [&::-webkit-outer-spin-button]:appearance-none
-                            [&::-webkit-inner-spin-button]:appearance-none
-                            [-moz-appearance:textfield]"/>) : (<button
+                        className="h-15 w-full px-3 py-2 rounded text-right text-green-900 bg-grey-200 outline-none border-2 border-green-400 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"/>) : (<button
                     type="button"
                     onClick={() => {
                         setShowCustom(true);
                         onChangeTip("");
                     }}
-                    className="h-15 px-3 py-2 rounded
-                            bg-grey-50 text-green-900
-                            transition-colors duration-150
-                            hover:bg-green-400/60
-                            cursor-pointer"
+                    className="h-15 px-3 py-2 rounded bg-grey-50 text-green-900 transition-colors duration-150 hover:bg-green-400/60 cursor-pointer"
                 >
                     Custom
                 </button>
