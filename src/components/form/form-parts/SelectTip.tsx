@@ -26,23 +26,3 @@ export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
         </>
     )
 }
-
-type CustomTipProps = {
-    onChangeTip: (t: number) => void;
-};
-
-function CustomTip({ onChangeTip }: CustomTipProps) {
-    const [customValue, setCustomValue] = useState("");
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setCustomValue(e.target.value);
-        const value = Number(e.target.value);
-        if (!isNaN(value)) {
-            onChangeTip(value);
-        }
-    };
-
-    return (
-        <input type="number" placeholder="Custom %" value={customValue} onChange={handleChange} className="border p-2 rounded w-20" />
-    );
-}
