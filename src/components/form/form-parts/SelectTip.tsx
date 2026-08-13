@@ -3,8 +3,8 @@ import { useState } from "react";
 const tipOptions = [5, 10, 15, 25, 50];
 
 type SelectTipProps = {
-    tipSelected: number;
-    onChangeTip: (t: number) => void;
+    tipSelected: number | "";
+    onChangeTip: (t: number | "") => void;
 }
 
 export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
@@ -12,16 +12,43 @@ export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
 
     return (
         <>
-            <label htmlFor="value">Selec Tip %</label>
-            <div>
+            <label htmlFor="tip" className="text-xl tracking-wide text-grey-500">Select Tip %</label>
+            <div className="mt-5.5 mb-11 grid grid-cols-2 gap-5 text-3xl">
                 {tipOptions.map((item) => (
-                    <button key={item} onClick={() => { setShowCustom(false); onChangeTip(item); }} className={`px-3 py-2 rounded transition-colors duration-150 hover:text-white cursor-pointer ${tipSelected === item ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}`}>
+                    <button type="button" key={item}
+                        onClick={() => { setShowCustom(false); onChangeTip(item); }}
+                        className={`h-15.5 px-3 py-2 rounded transition-colors duration-150 hover:bg-green-400/60 cursor-pointer ${tipSelected === item && !showCustom ? "text-green-900 bg-green-400/60" : "text-white-0 bg-green-900"}`}>
                         {item}%
                     </button>
                 ))}
-                <button onClick={() => { setShowCustom(true); onChangeTip(0); }} className={`px-3 py-2 rounded transition-colors duration-150 hover:text-white cursor-pointer ${showCustom ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}`}> Custom </button>
 
-                {showCustom && (<input type="number" placeholder="Custom %" onChange={(e) => onChangeTip(Number(e.target.value))} className="border p-2 rounded w-20" />)}
+                {showCustom ? (
+                    <input id="tip" type="number" value={tipSelected} placeholder="Custom %" autoFocus onChange={(e) => {
+                        const value = e.target.value;
+                        onChangeTip(
+                            value === "" ? "" : Number(value)
+                        );
+                    }}
+                        className="h-15 w-full px-3 py-2 rounded text-right text-green-900 bg-grey-200
+                            outline-none border-2 border-green-400
+                            appearance-none
+                            [&::-webkit-outer-spin-button]:appearance-none
+                            [&::-webkit-inner-spin-button]:appearance-none
+                            [-moz-appearance:textfield]"/>) : (<button
+                    type="button"
+                    onClick={() => {
+                        setShowCustom(true);
+                        onChangeTip("");
+                    }}
+                    className="h-15 px-3 py-2 rounded
+                            bg-grey-50 text-green-900
+                            transition-colors duration-150
+                            hover:bg-green-400/60
+                            cursor-pointer"
+                >
+                    Custom
+                </button>
+                )}
             </div >
         </>
     )
