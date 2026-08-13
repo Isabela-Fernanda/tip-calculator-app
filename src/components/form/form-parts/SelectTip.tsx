@@ -23,7 +23,7 @@ export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
                 ))}
 
                 {showCustom ? (
-                    <input id="tip" type="number" value={tipSelected} placeholder="Custom %" autoFocus onChange={(e) => {
+                    <input id="tip" type="number" min={0} value={tipSelected} placeholder="Custom %" autoFocus onChange={(e) => {
                         const value = e.target.value;
                         onChangeTip(
                             value === "" ? "" : Number(value)

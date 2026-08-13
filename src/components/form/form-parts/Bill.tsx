@@ -14,7 +14,7 @@ export function Bill({ bill, onChangeBill }: BillProps) {
             <label htmlFor="bill" className="text-xl text-grey-500">Bill</label>
             <div className="bg-grey-50 flex items-center text-3xl mt-2.5 mb-11.5 px-5.5 h-14.5 rounded-md border-2 border-transparent focus-within:border-green-400 cursor-pointer" onClick={() => inputRef.current?.focus()}>
                 <img src={DollarIcon} className="h-5.5" />
-                <input ref={inputRef} id="bill" type="number" value={bill} placeholder="0"
+                <input ref={inputRef} id="bill" type="number" min={0} value={bill} placeholder="0"
                     onChange={(e) => {
                         const value = e.target.value;
                         onChangeBill(value === "" ? "" : Number(value));
