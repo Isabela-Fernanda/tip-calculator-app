@@ -25,9 +25,15 @@ export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
                 {showCustom ? (
                     <input id="tip" type="number" min={0} value={tipSelected} placeholder="Custom %" autoFocus onChange={(e) => {
                         const value = e.target.value;
-                        onChangeTip(
-                            value === "" ? "" : Number(value)
-                        );
+                        if (value === "") {
+                            onChangeTip("");
+                            return;
+                        }
+                        const number = Number(value);
+                        if (number >= 0) {
+                            onChangeTip(number);
+                            return;
+                        }
                     }}
                         className="h-15 w-full px-3 py-2 rounded text-right text-green-900 bg-grey-200 outline-none border-2 border-green-400 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"/>) : (<button
                     type="button"

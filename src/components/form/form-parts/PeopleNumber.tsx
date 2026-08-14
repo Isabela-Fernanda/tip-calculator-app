@@ -25,7 +25,15 @@ export function PeopleNumber({ peopleNumber, onChangePeopleNumber }: PeopleNumbe
                 <input id="people" type="number" min={0} value={peopleNumber} placeholder="0"
                     onChange={(e) => {
                         const value = e.target.value;
-                        onChangePeopleNumber(value === "" ? "" : Number(value));
+                        if (value === "") {
+                            onChangePeopleNumber("");
+                            return;
+                        }
+                        const number = Number(value);
+                        if (number >= 0) {
+                            onChangePeopleNumber(number);
+                            return;
+                        }
                     }}
                     className={`flex-1 min-w-0 text-right text-green-900 cursor-pointer outline-none appearance-none bg-transparent [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield] ${isInvalid ? "border-red-400" : "border-transparent focus-within:border-green-400"
                         }`} />
