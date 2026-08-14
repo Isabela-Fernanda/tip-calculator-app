@@ -1,7 +1,16 @@
-import { useState } from "react"
-import Logo from "./assets/images/logo.svg"
-import { Form } from "./components/form/Form.tsx"
-import { CalculatedResult } from "./components/result/CalculatedResult.tsx"
+import { useState } from "react";
+import Logo from "./assets/images/logo.svg";
+import { formSchema } from "./schema/formSchema.ts";
+import { Form } from "./components/form/Form.tsx";
+import { CalculatedResult } from "./components/result/CalculatedResult.tsx";
+
+const result = formSchema.safeParse({
+  bill: 100,
+  tip: 12,
+  people: 0,
+});
+
+console.log(result);
 
 function App() {
   const [bill, setBill] = useState<number | "">("");
