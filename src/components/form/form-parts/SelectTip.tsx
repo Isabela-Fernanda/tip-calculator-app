@@ -17,7 +17,7 @@ export function SelecTip({ tipSelected, onChangeTip }: SelectTipProps) {
                 {tipOptions.map((item) => (
                     <button type="button" key={item}
                         onClick={() => { setShowCustom(false); onChangeTip(item); }}
-                        className={`h-15.5 px-3 py-2 rounded transition-colors duration-150 hover:bg-green-400/60 cursor-pointer ${tipSelected === item && !showCustom ? "text-green-900 bg-grey-200" : "text-white-0 bg-green-900"}`}>
+                        className={`h-15.5 px-3 py-2 rounded transition-colors duration-150 hover:bg-green-400/60 cursor-pointer ${tipSelected === item && !showCustom ? "text-green-900 bg-green-400/60" : "text-white-0 bg-green-900"}`}>
                         {item}%
                     </button>
                 ))}
