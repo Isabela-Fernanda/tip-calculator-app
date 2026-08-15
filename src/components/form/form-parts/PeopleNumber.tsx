@@ -1,42 +1,48 @@
 import { useRef } from "react";
+
+import type { z } from "zod";
+import type { UseFormRegister } from "react-hook-form";
+
+import { formSchema } from "../../../schema/formSchema";
 import PersonIcon from "../../../assets/images/icon-person.svg";
 
+type FormData = z.infer<typeof formSchema>
+
 type PeopleNumberProps = {
-    peopleNumber: number | "";
-    onChangePeopleNumber: (p: number | "") => void;
+    register: UseFormRegister<FormData>;
+    error?: string;
 }
 
-export function PeopleNumber({ peopleNumber, onChangePeopleNumber }: PeopleNumberProps) {
+export function PeopleNumber({ register, error }: PeopleNumberProps) {
     const inputRef = useRef<HTMLInputElement>(null);
-    const isInvalid = peopleNumber === 0;
+    const isInvalid = !!error;
+
+    const peopleField = register("people", { setValueAs: (value) => value === "" ? "" : Number(value), });
+
     return (
         <>
             <div className="flex items-center justify-between">
                 <label htmlFor="people" className="text-xl text-grey-500">Number of People</label>
-                {isInvalid && (
+
+                {error && (
                     <span className="text-red-400">
-                        Can't be zero
+                        {error}
                     </span>
                 )}
             </div>
 
-            <div className="bg-grey-50 flex items-center text-3xl my-2.5 px-5 h-14.5 rounded-md border-2 border-transparent focus-within:border-green-400 cursor-pointer" onClick={() => inputRef.current?.focus()}>
+            <div onClick={() => inputRef.current?.focus()}
+                className={`bg-grey-50 flex items-center text-3xl my-2.5 px-5 h-14.5 rounded-md border-2 border-transparent focus-within:border-green-400 cursor-pointer ${isInvalid ? "border-red-600" : "border-transparent focus-within:border-green-400"}`}>
+
                 <img src={PersonIcon} className="h-5.5" />
-                <input id="people" type="number" min={0} value={peopleNumber} placeholder="0"
-                    onChange={(e) => {
-                        const value = e.target.value;
-                        if (value === "") {
-                            onChangePeopleNumber("");
-                            return;
-                        }
-                        const number = Number(value);
-                        if (number >= 0) {
-                            onChangePeopleNumber(number);
-                            return;
-                        }
+
+                <input id="people" type="number" placeholder="0" min={0} {...peopleField}
+                    ref={(e) => {
+                        peopleField.ref(e);
+                        inputRef.current = e;
                     }}
-                    className={`flex-1 min-w-0 text-right text-green-900 cursor-pointer outline-none appearance-none bg-transparent [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield] ${isInvalid ? "border-red-400" : "border-transparent focus-within:border-green-400"
-                        }`} />
+                    className="flex-1 min-w-0 text-right text-green-900 cursor-pointer outline-none appearance-none bg-transparent [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
+                />
             </div>
         </>
     )

@@ -1,39 +1,45 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
 import Logo from "./assets/images/logo.svg";
 import { formSchema } from "./schema/formSchema.ts";
 import { Form } from "./components/form/Form.tsx";
 import { CalculatedResult } from "./components/result/CalculatedResult.tsx";
 
-const result = formSchema.safeParse({
-  bill: 100,
-  tip: 12,
-  people: 0,
-});
+type FormData = z.infer<typeof formSchema>;
 
-console.log(result);
+export default function App() {
+  const {
+    register,
+    handleSubmit, 
+    control,
+    watch,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      bill: 0,
+      tip: 0,
+      people: "",
+    },
+  });
 
-function App() {
-  const [bill, setBill] = useState<number | "">("");
-  const [selectedTip, setSelectedTip] = useState<number | "">("");
-  const [peopleNumber, setPeopleNumber] = useState<number | "">("");
-
-  const reset = () => {
-    setBill("");
-    setSelectedTip("");
-    setPeopleNumber("");
-  }
+  const bill = watch("bill");
+  const selectedTip = watch("tip");
+  const peopleNumber = watch("people");
 
   return (
     <>
-    <main className="flex flex-col items-center">
-      <img src={Logo} className="w-28 h-17.5 mt-16 mb-13"/>
-      <section className="bg-white-0 rounded-t-4xl w-full py-11 px-8">
-        <Form bill={bill} setBill={setBill} selectedTip={selectedTip} setSelectedTip={setSelectedTip} peopleNumber={peopleNumber} setPeopleNumber={setPeopleNumber}/>
-        <CalculatedResult bill={bill} selectedTip={selectedTip} peopleNumber={peopleNumber} onReset={reset}/>
-      </section>
-    </main>
+      <main className="flex flex-col items-center">
+        <img src={Logo} className="w-28 h-17.5 mt-16 mb-13" />
+        <section className="bg-white-0 rounded-t-4xl w-full py-11 px-8">
+          <Form register={register} control={control} setValue={setValue} watch={watch} errors={errors} />
+          <CalculatedResult bill={bill} selectedTip={selectedTip} peopleNumber={peopleNumber} onReset={reset} />
+        </section>
+      </main>
     </>
   )
 }
-
-export default App

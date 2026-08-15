@@ -1,23 +1,19 @@
 type CalculatedResultProps = {
-    bill: number | "";
-    selectedTip: number | "";
+    bill: number;
+    selectedTip: number;
     peopleNumber: number | "";
     onReset: () => void;
 }
 
 export function CalculatedResult({ bill, selectedTip, peopleNumber, onReset }: CalculatedResultProps) {
-    const billValue = bill === "" ? 0 : bill;
-    const tipValue = selectedTip === "" ? 0 : selectedTip;
-    const peopleValue = peopleNumber === "" ? 0 : peopleNumber;
-
-    const tip = calcTip(billValue, tipValue);
+    const tip = calcTip(bill, selectedTip);
 
     let billPerPerson = 0;
     let tipPerPerson = 0;
 
-    if (peopleValue > 0) {
-        billPerPerson = calcPerPerson(billValue, peopleValue);
-        tipPerPerson = calcPerPerson(tip, peopleValue);
+    if (!!peopleNumber) {
+        billPerPerson = calcPerPerson(bill, peopleNumber);
+        tipPerPerson = calcPerPerson(tip, peopleNumber);
     }
 
     return (
