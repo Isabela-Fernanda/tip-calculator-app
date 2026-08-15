@@ -17,6 +17,7 @@ export default function App() {
     defaultValues: {
       bill: 0,
       tip: 0,
+      customTip: "",
       people: "",
     },
   });
