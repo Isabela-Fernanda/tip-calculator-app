@@ -1,6 +1,4 @@
-import { useRef } from "react";
-import { useFormContext } from "react-hook-form";
-
+import { Controller, useFormContext } from "react-hook-form";
 import type { z } from "zod";
 
 import { formSchema } from "../../../schema/formSchema";
@@ -9,13 +7,10 @@ import PersonIcon from "../../../assets/images/icon-person.svg";
 type FormData = z.infer<typeof formSchema>
 
 export function PeopleNumber() {
-    const { register, formState: { errors }, } = useFormContext<FormData>();
+    const { control, setFocus, formState: { errors }, } = useFormContext<FormData>();
     const error = errors.people?.message;
 
-    const inputRef = useRef<HTMLInputElement>(null);
     const isInvalid = !!error;
-
-    const peopleField = register("people", { setValueAs: (value) => value === "" ? "" : Number(value), });
 
     return (
         <>
@@ -29,20 +24,22 @@ export function PeopleNumber() {
                 )}
             </div>
 
-            <div onClick={() => inputRef.current?.focus()}
-                className={`bg-grey-50 flex items-center text-3xl my-2.5 px-5 h-14.5 rounded-md border-2 border-transparent focus-within:border-green-400 cursor-pointer ${isInvalid ? "border-red-600" : "border-transparent focus-within:border-green-400"}`}>
+            <div onClick={() => setFocus("people")}
+                className={`bg-grey-50 flex items-center text-3xl my-2.5 px-5 h-14.5 rounded-md border-2 cursor-pointer ${isInvalid ? "border-red-400" : "border-transparent focus-within:border-green-400"}`}>
 
                 <img src={PersonIcon} className="h-5.5" />
 
-                <input id="people" type="number" placeholder="0" min={0} {...peopleField}
-                    ref={(e) => {
-                        peopleField.ref(e);
-                        inputRef.current = e;
+                <Controller name="people" control={control} render={({ field }) => (
+                    <input {...field}
+                    id="people" type="number" min={0} placeholder="0" value={field.value === "" ? "" : field.value}
+                    onChange={(e) => {
+                        const value = e.target.value;
+                        field.onChange(value === "" ? "" : Number(value));
                     }}
                     className="flex-1 min-w-0 text-right text-green-900 cursor-pointer outline-none appearance-none bg-transparent [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
                 />
+                )}></Controller>
             </div>
         </>
     )
-
 }

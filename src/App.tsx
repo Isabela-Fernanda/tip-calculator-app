@@ -2,8 +2,9 @@ import { useForm, FormProvider } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import Logo from "./assets/images/logo.svg";
 import { formSchema } from "./schema/formSchema.ts";
+
+import Logo from "./assets/images/logo.svg";
 import { Form } from "./components/form/Form.tsx";
 import { CalculatedResult } from "./components/result/CalculatedResult.tsx";
 
@@ -12,12 +13,13 @@ type FormData = z.infer<typeof formSchema>;
 export default function App() {
   const methods = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    mode: "onChange",
     defaultValues: {
       bill: 0,
       tip: 0,
       people: "",
     },
-  })
+  });
 
   const {
     handleSubmit,
