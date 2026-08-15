@@ -38,9 +38,9 @@ export default function App() {
 
   return (
     <>
-      <main className="flex flex-col items-center">
-        <img src={Logo} className="w-28 h-17.5 mt-16 mb-13" />
-        <section className="bg-white-0 rounded-t-4xl w-full py-11 px-8">
+      <main className="flex flex-col items-center max-w-230 mx-auto">
+        <img src={Logo} className="w-28 h-17.5 mt-16 mb-13 sm:w-22 sm:h-13 sm:mt-12" />
+        <section className="bg-white-0 rounded-t-4xl w-full py-11 px-8 sm:rounded-4xl sm:mt-9 sm:py-8 sm:grid sm:grid-cols-2 sm:gap-7.5">
           <FormProvider {...methods}>
             <Form onSubmit={handleSubmit(onSubmit)} />
           </FormProvider>

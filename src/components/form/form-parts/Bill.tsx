@@ -19,10 +19,10 @@ export function Bill() {
 
     return (
         <>
-            <label htmlFor="bill" className="text-xl text-grey-500">Bill</label>
+            <label htmlFor="bill" className="text-xl text-grey-500 sm:text-lg">Bill</label>
 
-            <div className="bg-grey-50 flex items-center text-3xl mt-2.5 mb-11.5 px-5.5 h-14.5 rounded-md border-2 border-transparent focus-within:border-green-400 cursor-pointer" onClick={() => inputRef.current?.focus()}>
-                <img src={DollarIcon} className="h-5.5" />
+            <div className="bg-grey-50 flex items-center text-3xl mt-2.5 mb-11.5 px-5.5 h-14.5 rounded-md border-2 border-transparent focus-within:border-green-400 cursor-pointer sm:mt-0 sm:mb-8 sm:px-4 sm:text-2xl" onClick={() => inputRef.current?.focus()}>
+                <img src={DollarIcon} className="h-5.5 lg:h-5" />
 
                 <Controller name="bill" control={control} render={({ field }) => (
                     <input ref={(e) => {

@@ -8,7 +8,7 @@ type FormProps = {
 
 export function Form({ onSubmit }: FormProps) {
     return (
-        <form onSubmit={onSubmit} className="mx-2.5">
+        <form onSubmit={onSubmit} className="mx-2.5 sm:px-2 sm:py-3">
             <Bill />
             <SelecTip />
             <PeopleNumber />

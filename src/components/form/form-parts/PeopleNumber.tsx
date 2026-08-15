@@ -15,7 +15,7 @@ export function PeopleNumber() {
     return (
         <>
             <div className="flex items-center justify-between">
-                <label htmlFor="people" className="text-xl text-grey-500">Number of People</label>
+                <label htmlFor="people" className="text-xl text-grey-500 sm:text-lg sm:tracking-tighter">Number of People</label>
 
                 {error && (
                     <span className="text-red-400">
@@ -25,9 +25,9 @@ export function PeopleNumber() {
             </div>
 
             <div onClick={() => setFocus("people")}
-                className={`bg-grey-50 flex items-center text-3xl my-2.5 px-5 h-14.5 rounded-md border-2 cursor-pointer ${isInvalid ? "border-red-400" : "border-transparent focus-within:border-green-400"}`}>
+                className={`bg-grey-50 flex items-center text-3xl my-2.5 px-5 h-14.5 rounded-md border-2 cursor-pointer ${isInvalid ? "border-red-400" : "border-transparent focus-within:border-green-400"} sm:mt-0 sm:mb-0 sm:px-4 sm:text-2xl`}>
 
-                <img src={PersonIcon} className="h-5.5" />
+                <img src={PersonIcon} className="h-5.5 sm:h-4.5" />
 
                 <Controller name="people" control={control} render={({ field }) => (
                     <input {...field}

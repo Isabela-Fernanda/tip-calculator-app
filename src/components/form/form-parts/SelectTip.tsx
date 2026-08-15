@@ -21,13 +21,13 @@ export function SelecTip() {
 
     return (
         <>
-            <label htmlFor="tip" className="text-xl tracking-wide text-grey-500">Select Tip %</label>
+            <label htmlFor="tip" className="text-xl tracking-wide text-grey-500 sm:text-lg sm:tracking-tighter">Select Tip %</label>
 
-            <div className="mt-5.5 mb-11 grid grid-cols-2 gap-5 text-3xl">
+            <div className="mt-5.5 mb-11 grid grid-cols-2 gap-5 text-3xl sm:grid-cols-3 sm:gap-4.5 sm:mt-3 sm:mb-9.5 sm:text-xl md:text-2xl">
                 {tipOptions.map((item) => (
                     <button type="button" key={item}
                         onClick={() => handleTipOption(item)}
-                        className={`h-15.5 px-3 py-2 rounded transition-colors duration-150 hover:bg-green-400/60 cursor-pointer ${tipSelected === item && customTip === "" ? "text-green-900 bg-green-400" : "text-white-0 bg-green-900"}`}>
+                        className={`h-15.5 px-3 py-2 rounded transition-colors duration-150 hover:bg-green-400/60 cursor-pointer ${tipSelected === item && customTip === "" ? "text-green-900 bg-green-400" : "text-white-0 bg-green-900"} sm:h-12`}>
                         {item}%
                     </button>
                 ))}
@@ -43,7 +43,7 @@ export function SelecTip() {
                             }
                             setValue("tip", Number(value));
                         }}
-                        className="h-15 w-full px-3 py-2 rounded text-center text-green-900 bg-grey-50 outline-none border-2 border-transparent focus-within:border-green-400 focus-within:text-right appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]" />
+                        className="h-15 w-full px-3 py-2 rounded text-center text-green-900 bg-grey-50 outline-none border-2 border-transparent focus-within:border-green-400 focus-within:text-right appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield] sm:h-12" />
                 )}></Controller>
             </div >
         </>
