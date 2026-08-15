@@ -140,12 +140,12 @@ Utilizei o ChatGPT como ferramenta de apoio durante o desenvolvimento.
 
 A IA foi utilizada principalmente para:
 
-Esclarecer conceitos e APIs do React Hook Form;
-Auxiliar na integração entre React Hook Form e Zod;
-Investigar e corrigir problemas de tipagem no TypeScript;
-Debater diferentes formas de estruturar os componentes do formulário;
-Identificar problemas relacionados ao gerenciamento de estado e reset dos campos;
-Revisar decisões de implementação e responsividade.
+- Esclarecer conceitos e APIs do React Hook Form;
+- Auxiliar na integração entre React Hook Form e Zod;
+- Investigar e corrigir problemas de tipagem no TypeScript;
+- Debater diferentes formas de estruturar os componentes do formulário;
+- Identificar problemas relacionados ao gerenciamento de estado e reset dos campos;
+- Revisar decisões de implementação e responsividade.
 
 A implementação e as decisões finais foram feitas por mim, utilizando as sugestões como apoio para compreender os problemas e encontrar soluções.
 
