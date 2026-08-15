@@ -46,7 +46,7 @@ Os usuários devem ser capazes de:
 ### Links
 
 - **Desafio no Frontend Mentor:** [Tip calculator app](https://www.frontendmentor.io/challenges/tip-calculator-app-ugJNGbJUX)
-- **Live Site:** [Adicionar URL do projeto](https://seu-live-site-aqui.com)
+- **Live Site:** [Projeto](https://isabela-fernanda.github.io/tip-calculator-app/)
 
 ## Meu processo
 
