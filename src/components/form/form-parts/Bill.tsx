@@ -1,19 +1,15 @@
 import { useRef } from "react";
-import { Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 import type { z } from "zod";
-import type { Control } from "react-hook-form";
 
 import { formSchema } from "../../../schema/formSchema";
 import DollarIcon from "../../../assets/images/icon-dollar.svg";
 
 type FormData = z.infer<typeof formSchema>
 
-type BillProps = {
-    control: Control<FormData>;
-}
-
-export function Bill({ control }: BillProps) {
+export function Bill() {
+    const {control} = useFormContext<FormData>();
     const inputRef = useRef<HTMLInputElement>(null);
 
     const formatCurrency = (value: number) => new Intl.NumberFormat("pt-BR", {

@@ -1,19 +1,17 @@
 import { useRef } from "react";
+import { useFormContext } from "react-hook-form";
 
 import type { z } from "zod";
-import type { UseFormRegister } from "react-hook-form";
 
 import { formSchema } from "../../../schema/formSchema";
 import PersonIcon from "../../../assets/images/icon-person.svg";
 
 type FormData = z.infer<typeof formSchema>
 
-type PeopleNumberProps = {
-    register: UseFormRegister<FormData>;
-    error?: string;
-}
+export function PeopleNumber() {
+    const { register, formState: { errors }, } = useFormContext<FormData>();
+    const error = errors.people?.message;
 
-export function PeopleNumber({ register, error }: PeopleNumberProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const isInvalid = !!error;
 

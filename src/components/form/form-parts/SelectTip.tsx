@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 
 import type { z } from "zod";
-import type { UseFormRegister, UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { formSchema } from "../../../schema/formSchema";
 
@@ -9,13 +9,9 @@ type FormData = z.infer<typeof formSchema>
 
 const tipOptions = [5, 10, 15, 25, 50];
 
-type SelectTipProps = {
-    register: UseFormRegister<FormData>;
-    setValue: UseFormSetValue<FormData>;
-    watch: UseFormWatch<FormData>;
-}
+export function SelecTip() {
+    const { register, setValue, watch } = useFormContext<FormData>();
 
-export function SelecTip({ register, setValue, watch }: SelectTipProps) {
     const [showCustom, setShowCustom] = useState(false);
 
     const tipSelected = watch("tip");
